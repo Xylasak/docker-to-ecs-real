@@ -14,3 +14,11 @@ End-to-end containerization and deployment of a simple API using Docker, Docker 
 ### Build image
 ```bash
 docker build -t docker-to-ecs-real:dev .
+```
+## Screenshots
+
+### Image stored in Amazon ECR
+![ECR Image](images/ecr-image.png)
+
+### Local container running via Docker Compose
+![Local Run](images/local-run.png)
