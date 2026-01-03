@@ -6,7 +6,7 @@ This project demonstrates a **real production-style workflow**:
 local development → containerization → image registry → ECS service running on EC2 instances.
 
 ## 🚀 Architecture Overview
-
+```md
 Local Machine (Docker)
 ↓
 Docker Image (linux/amd64)
@@ -16,6 +16,7 @@ Amazon ECR (Private Registry)
 Amazon ECS Service (EC2 launch type)
 ↓
 Public EC2 Instance (port 8000)
+```
 
 ## 🧱 Tech Stack
 
@@ -86,6 +87,8 @@ See the /images directory for:
 
 ## 👤 Author
 
-Saliou
-Cloud Engineer
-Focus: AWS • Terraform • Docker • ECS • CI/CD
+**Saliou**  
+Cloud Engineer 
+ 
+**Focus:**  
+AWS • Terraform • Docker • ECS • CI/CD
